@@ -1,54 +1,10 @@
-import os
-from pathlib import Path
-import re
-
-AUDIO_DIR = "zooni_audios_v3"
-OUTPUT_FILE = os.path.join(AUDIO_DIR, "index.html")
-EXTENSIONS = [".mp3"]  # Add more as needed
-
-def build_tree(path):
-    tree = {}
-    for root, dirs, files in os.walk(path):
-        rel_root = os.path.relpath(root, AUDIO_DIR)
-        rel_root = "" if rel_root == "." else rel_root
-        sub_tree = tree
-        if rel_root:
-            for part in rel_root.split(os.sep):
-                sub_tree = sub_tree.setdefault(part, {})
-        for file in files:
-            if Path(file).suffix.lower() in EXTENSIONS:
-                sub_tree.setdefault("__files__", []).append(file)
-    return tree
-
-def natural_key(s):
-    # Split string into parts: digits as integers, others as lowercase strings
-    parts = re.split(r'(\d+)', s)
-    return [int(p) if p.isdigit() else p.lower() for p in parts]
-
-def render_tree(tree, parent_path=""):
-    html = "<ul>\n"
-    # Sort folders naturally
-    for name, subtree in sorted(tree.items(), key=lambda x: natural_key(x[0])):
-        if name == "__files__":
-            # Sort files naturally
-            for f in sorted(subtree, key=natural_key):
-                full_path = os.path.join(parent_path, f)
-                html += f'<li><a href="{full_path}" download>{f}</a></li>\n'
-        else:
-            path = os.path.join(parent_path, name)
-            html += f'<li><details><summary>{name}</summary>\n{render_tree(subtree, path)}</details></li>\n'
-    html += "</ul>\n"
-    return html
-
-tree = build_tree(AUDIO_DIR)
-html_body = render_tree(tree)
-
-html_template = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Audio Downloads</title>
   <style>
+    /* noqa: E501, E265 -- CSS block for HTML output, not Python code */
     body { font-family: sans-serif; padding: 1em; }
     ul { list-style-type: none; }
     a { text-decoration: none; color: #0366d6; }
@@ -58,12 +14,732 @@ html_template = f"""<!DOCTYPE html>
 </head>
 <body>
   <h1>Cypriot Audio Files</h1>
-  {html_body}
+  <ul>
+<li><details><summary>110525psito_chunks0</summary>
+<ul>
+<li><details><summary>110525psito_chunk0</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk0/110525psito_chunk0.mp3" download>110525psito_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk1</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk1/110525psito_chunk1.mp3" download>110525psito_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk2</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk2/110525psito_chunk2.mp3" download>110525psito_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk3</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk3/110525psito_chunk3.mp3" download>110525psito_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk4</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk4/110525psito_chunk4.mp3" download>110525psito_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk5</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk5/110525psito_chunk5.mp3" download>110525psito_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk6</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk6/110525psito_chunk6.mp3" download>110525psito_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk7</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk7/110525psito_chunk7.mp3" download>110525psito_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk8</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk8/110525psito_chunk8.mp3" download>110525psito_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk9</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk9/110525psito_chunk9.mp3" download>110525psito_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk10</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk10/110525psito_chunk10.mp3" download>110525psito_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>110525psito_chunk11</summary>
+<ul>
+<li><a href="110525psito_chunks0/110525psito_chunk11/110525psito_chunk11.mp3" download>110525psito_chunk11.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunks3</summary>
+<ul>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk0</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk0/130425ΣΚΕΤΣ_D_6000053_chunk0.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk1</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk1/130425ΣΚΕΤΣ_D_6000053_chunk1.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk2</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk2/130425ΣΚΕΤΣ_D_6000053_chunk2.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk3</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk3/130425ΣΚΕΤΣ_D_6000053_chunk3.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk4</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk4/130425ΣΚΕΤΣ_D_6000053_chunk4.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk5</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk5/130425ΣΚΕΤΣ_D_6000053_chunk5.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk6</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk6/130425ΣΚΕΤΣ_D_6000053_chunk6.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk7</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk7/130425ΣΚΕΤΣ_D_6000053_chunk7.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk8</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk8/130425ΣΚΕΤΣ_D_6000053_chunk8.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk9</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk9/130425ΣΚΕΤΣ_D_6000053_chunk9.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk10</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk10/130425ΣΚΕΤΣ_D_6000053_chunk10.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk11</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk11/130425ΣΚΕΤΣ_D_6000053_chunk11.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk12</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk12/130425ΣΚΕΤΣ_D_6000053_chunk12.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk12.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>130425ΣΚΕΤΣ_D_6000053_chunk13</summary>
+<ul>
+<li><a href="130425ΣΚΕΤΣ_D_6000053_chunks3/130425ΣΚΕΤΣ_D_6000053_chunk13/130425ΣΚΕΤΣ_D_6000053_chunk13.mp3" download>130425ΣΚΕΤΣ_D_6000053_chunk13.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunks4</summary>
+<ul>
+<li><details><summary>150625skets_D_6121421_chunk0</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk0/150625skets_D_6121421_chunk0.mp3" download>150625skets_D_6121421_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk1</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk1/150625skets_D_6121421_chunk1.mp3" download>150625skets_D_6121421_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk2</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk2/150625skets_D_6121421_chunk2.mp3" download>150625skets_D_6121421_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk3</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk3/150625skets_D_6121421_chunk3.mp3" download>150625skets_D_6121421_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk4</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk4/150625skets_D_6121421_chunk4.mp3" download>150625skets_D_6121421_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk5</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk5/150625skets_D_6121421_chunk5.mp3" download>150625skets_D_6121421_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk6</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk6/150625skets_D_6121421_chunk6.mp3" download>150625skets_D_6121421_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk7</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk7/150625skets_D_6121421_chunk7.mp3" download>150625skets_D_6121421_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk8</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk8/150625skets_D_6121421_chunk8.mp3" download>150625skets_D_6121421_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk9</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk9/150625skets_D_6121421_chunk9.mp3" download>150625skets_D_6121421_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>150625skets_D_6121421_chunk10</summary>
+<ul>
+<li><a href="150625skets_D_6121421_chunks4/150625skets_D_6121421_chunk10/150625skets_D_6121421_chunk10.mp3" download>150625skets_D_6121421_chunk10.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunks5</summary>
+<ul>
+<li><details><summary>180525sketsΣ_D_6082110_chunk0</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk0/180525sketsΣ_D_6082110_chunk0.mp3" download>180525sketsΣ_D_6082110_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk1</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk1/180525sketsΣ_D_6082110_chunk1.mp3" download>180525sketsΣ_D_6082110_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk2</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk2/180525sketsΣ_D_6082110_chunk2.mp3" download>180525sketsΣ_D_6082110_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk3</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk3/180525sketsΣ_D_6082110_chunk3.mp3" download>180525sketsΣ_D_6082110_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk4</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk4/180525sketsΣ_D_6082110_chunk4.mp3" download>180525sketsΣ_D_6082110_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk5</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk5/180525sketsΣ_D_6082110_chunk5.mp3" download>180525sketsΣ_D_6082110_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk6</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk6/180525sketsΣ_D_6082110_chunk6.mp3" download>180525sketsΣ_D_6082110_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>180525sketsΣ_D_6082110_chunk7</summary>
+<ul>
+<li><a href="180525sketsΣ_D_6082110_chunks5/180525sketsΣ_D_6082110_chunk7/180525sketsΣ_D_6082110_chunk7.mp3" download>180525sketsΣ_D_6082110_chunk7.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunks2</summary>
+<ul>
+<li><details><summary>190125skets_chunk0</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk0/190125skets_chunk0.mp3" download>190125skets_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk1</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk1/190125skets_chunk1.mp3" download>190125skets_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk2</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk2/190125skets_chunk2.mp3" download>190125skets_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk3</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk3/190125skets_chunk3.mp3" download>190125skets_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk4</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk4/190125skets_chunk4.mp3" download>190125skets_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk5</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk5/190125skets_chunk5.mp3" download>190125skets_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk6</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk6/190125skets_chunk6.mp3" download>190125skets_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk7</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk7/190125skets_chunk7.mp3" download>190125skets_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk8</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk8/190125skets_chunk8.mp3" download>190125skets_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>190125skets_chunk9</summary>
+<ul>
+<li><a href="190125skets_chunks2/190125skets_chunk9/190125skets_chunk9.mp3" download>190125skets_chunk9.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunks9</summary>
+<ul>
+<li><details><summary>220625psito_D_6298425_chunk0</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk0/220625psito_D_6298425_chunk0.mp3" download>220625psito_D_6298425_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk1</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk1/220625psito_D_6298425_chunk1.mp3" download>220625psito_D_6298425_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk2</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk2/220625psito_D_6298425_chunk2.mp3" download>220625psito_D_6298425_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk3</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk3/220625psito_D_6298425_chunk3.mp3" download>220625psito_D_6298425_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk4</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk4/220625psito_D_6298425_chunk4.mp3" download>220625psito_D_6298425_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk5</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk5/220625psito_D_6298425_chunk5.mp3" download>220625psito_D_6298425_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk6</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk6/220625psito_D_6298425_chunk6.mp3" download>220625psito_D_6298425_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk7</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk7/220625psito_D_6298425_chunk7.mp3" download>220625psito_D_6298425_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk8</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk8/220625psito_D_6298425_chunk8.mp3" download>220625psito_D_6298425_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk9</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk9/220625psito_D_6298425_chunk9.mp3" download>220625psito_D_6298425_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk10</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk10/220625psito_D_6298425_chunk10.mp3" download>220625psito_D_6298425_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk11</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk11/220625psito_D_6298425_chunk11.mp3" download>220625psito_D_6298425_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>220625psito_D_6298425_chunk12</summary>
+<ul>
+<li><a href="220625psito_D_6298425_chunks9/220625psito_D_6298425_chunk12/220625psito_D_6298425_chunk12.mp3" download>220625psito_D_6298425_chunk12.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunks6</summary>
+<ul>
+<li><details><summary>260125psito_chunk0</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk0/260125psito_chunk0.mp3" download>260125psito_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk1</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk1/260125psito_chunk1.mp3" download>260125psito_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk2</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk2/260125psito_chunk2.mp3" download>260125psito_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk3</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk3/260125psito_chunk3.mp3" download>260125psito_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk4</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk4/260125psito_chunk4.mp3" download>260125psito_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk5</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk5/260125psito_chunk5.mp3" download>260125psito_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk6</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk6/260125psito_chunk6.mp3" download>260125psito_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk7</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk7/260125psito_chunk7.mp3" download>260125psito_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk8</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk8/260125psito_chunk8.mp3" download>260125psito_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk9</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk9/260125psito_chunk9.mp3" download>260125psito_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk10</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk10/260125psito_chunk10.mp3" download>260125psito_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk11</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk11/260125psito_chunk11.mp3" download>260125psito_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk12</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk12/260125psito_chunk12.mp3" download>260125psito_chunk12.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk13</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk13/260125psito_chunk13.mp3" download>260125psito_chunk13.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>260125psito_chunk14</summary>
+<ul>
+<li><a href="260125psito_chunks6/260125psito_chunk14/260125psito_chunk14.mp3" download>260125psito_chunk14.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunks7</summary>
+<ul>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk0</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk0/270425ΣΚΕΤΣ_D_6000937_chunk0.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk1</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk1/270425ΣΚΕΤΣ_D_6000937_chunk1.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk2</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk2/270425ΣΚΕΤΣ_D_6000937_chunk2.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk3</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk3/270425ΣΚΕΤΣ_D_6000937_chunk3.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk4</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk4/270425ΣΚΕΤΣ_D_6000937_chunk4.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk5</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk5/270425ΣΚΕΤΣ_D_6000937_chunk5.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk6</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk6/270425ΣΚΕΤΣ_D_6000937_chunk6.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk7</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk7/270425ΣΚΕΤΣ_D_6000937_chunk7.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk8</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk8/270425ΣΚΕΤΣ_D_6000937_chunk8.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk9</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk9/270425ΣΚΕΤΣ_D_6000937_chunk9.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk10</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk10/270425ΣΚΕΤΣ_D_6000937_chunk10.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk11</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk11/270425ΣΚΕΤΣ_D_6000937_chunk11.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk12</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk12/270425ΣΚΕΤΣ_D_6000937_chunk12.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk12.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk13</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk13/270425ΣΚΕΤΣ_D_6000937_chunk13.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk13.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>270425ΣΚΕΤΣ_D_6000937_chunk14</summary>
+<ul>
+<li><a href="270425ΣΚΕΤΣ_D_6000937_chunks7/270425ΣΚΕΤΣ_D_6000937_chunk14/270425ΣΚΕΤΣ_D_6000937_chunk14.mp3" download>270425ΣΚΕΤΣ_D_6000937_chunk14.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunks10</summary>
+<ul>
+<li><details><summary>290625skets_D_6126873_chunk0</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk0/290625skets_D_6126873_chunk0.mp3" download>290625skets_D_6126873_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk1</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk1/290625skets_D_6126873_chunk1.mp3" download>290625skets_D_6126873_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk2</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk2/290625skets_D_6126873_chunk2.mp3" download>290625skets_D_6126873_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk3</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk3/290625skets_D_6126873_chunk3.mp3" download>290625skets_D_6126873_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk4</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk4/290625skets_D_6126873_chunk4.mp3" download>290625skets_D_6126873_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk5</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk5/290625skets_D_6126873_chunk5.mp3" download>290625skets_D_6126873_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk6</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk6/290625skets_D_6126873_chunk6.mp3" download>290625skets_D_6126873_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk7</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk7/290625skets_D_6126873_chunk7.mp3" download>290625skets_D_6126873_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk8</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk8/290625skets_D_6126873_chunk8.mp3" download>290625skets_D_6126873_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>290625skets_D_6126873_chunk9</summary>
+<ul>
+<li><a href="290625skets_D_6126873_chunks10/290625skets_D_6126873_chunk9/290625skets_D_6126873_chunk9.mp3" download>290625skets_D_6126873_chunk9.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunks</summary>
+<ul>
+<li><details><summary>FXGlAHbXWJ0_chunk9</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk9/FXGlAHbXWJ0_chunk9.mp3" download>FXGlAHbXWJ0_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk11</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk11/FXGlAHbXWJ0_chunk11.mp3" download>FXGlAHbXWJ0_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk12</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk12/FXGlAHbXWJ0_chunk12.mp3" download>FXGlAHbXWJ0_chunk12.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk13</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk13/FXGlAHbXWJ0_chunk13.mp3" download>FXGlAHbXWJ0_chunk13.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk14</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk14/FXGlAHbXWJ0_chunk14.mp3" download>FXGlAHbXWJ0_chunk14.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk15</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk15/FXGlAHbXWJ0_chunk15.mp3" download>FXGlAHbXWJ0_chunk15.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk16</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk16/FXGlAHbXWJ0_chunk16.mp3" download>FXGlAHbXWJ0_chunk16.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk17</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk17/FXGlAHbXWJ0_chunk17.mp3" download>FXGlAHbXWJ0_chunk17.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk18</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk18/FXGlAHbXWJ0_chunk18.mp3" download>FXGlAHbXWJ0_chunk18.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk19</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk19/FXGlAHbXWJ0_chunk19.mp3" download>FXGlAHbXWJ0_chunk19.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk20</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk20/FXGlAHbXWJ0_chunk20.mp3" download>FXGlAHbXWJ0_chunk20.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk21</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk21/FXGlAHbXWJ0_chunk21.mp3" download>FXGlAHbXWJ0_chunk21.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>FXGlAHbXWJ0_chunk22</summary>
+<ul>
+<li><a href="FXGlAHbXWJ0_chunks/FXGlAHbXWJ0_chunk22/FXGlAHbXWJ0_chunk22.mp3" download>FXGlAHbXWJ0_chunk22.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunks8</summary>
+<ul>
+<li><details><summary>skets05012025_D_5743757_chunk0</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk0/skets05012025_D_5743757_chunk0.mp3" download>skets05012025_D_5743757_chunk0.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk1</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk1/skets05012025_D_5743757_chunk1.mp3" download>skets05012025_D_5743757_chunk1.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk2</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk2/skets05012025_D_5743757_chunk2.mp3" download>skets05012025_D_5743757_chunk2.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk3</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk3/skets05012025_D_5743757_chunk3.mp3" download>skets05012025_D_5743757_chunk3.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk4</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk4/skets05012025_D_5743757_chunk4.mp3" download>skets05012025_D_5743757_chunk4.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk5</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk5/skets05012025_D_5743757_chunk5.mp3" download>skets05012025_D_5743757_chunk5.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk6</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk6/skets05012025_D_5743757_chunk6.mp3" download>skets05012025_D_5743757_chunk6.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk7</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk7/skets05012025_D_5743757_chunk7.mp3" download>skets05012025_D_5743757_chunk7.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk8</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk8/skets05012025_D_5743757_chunk8.mp3" download>skets05012025_D_5743757_chunk8.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk9</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk9/skets05012025_D_5743757_chunk9.mp3" download>skets05012025_D_5743757_chunk9.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk10</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk10/skets05012025_D_5743757_chunk10.mp3" download>skets05012025_D_5743757_chunk10.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk11</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk11/skets05012025_D_5743757_chunk11.mp3" download>skets05012025_D_5743757_chunk11.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk12</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk12/skets05012025_D_5743757_chunk12.mp3" download>skets05012025_D_5743757_chunk12.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk13</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk13/skets05012025_D_5743757_chunk13.mp3" download>skets05012025_D_5743757_chunk13.mp3</a></li>
+</ul>
+</details></li>
+<li><details><summary>skets05012025_D_5743757_chunk14</summary>
+<ul>
+<li><a href="skets05012025_D_5743757_chunks8/skets05012025_D_5743757_chunk14/skets05012025_D_5743757_chunk14.mp3" download>skets05012025_D_5743757_chunk14.mp3</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
 </body>
 </html>
-"""
-
-with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    f.write(html_template)
-
-print(f"✅ index.html generated with collapsible folders at: {OUTPUT_FILE}")
